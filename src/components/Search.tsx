@@ -52,7 +52,7 @@ const searchBox = ctl(`
     bg-[#F5F7F9] 
     rounded-[10px]
     text-[16px]
-    font-[500]
+    font-medium
     py-[10px]
     indent-[40px]
     w-[100%]

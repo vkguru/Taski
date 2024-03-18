@@ -17,7 +17,7 @@ const NoTask = ({message, result} : TaskProps) => {
                     height={144}
                     style={{margin: 'auto'}}
                 />
-                <p className="text-[#8D9CB8] py-[20px]">{message}</p>
+                <p className="text-[#8D9CB8] py-[20px] font-medium">{message}</p>
                 {!result &&
                     <TkButton title="Create task" />
                 }
