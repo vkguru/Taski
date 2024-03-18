@@ -7,7 +7,7 @@ const Welcome = ({
     subtext: String;
 }) => {
     return (
-        <header className="flex sm:flex-row justify-between flex-col gap-3">
+        <header className="flex sm:flex-row justify-between flex-col gap-3 items-center">
             <div>
                 <h1 className="font-bold text-[28px]">
                     Welcome,{' '}
