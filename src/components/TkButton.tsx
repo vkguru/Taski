@@ -1,3 +1,4 @@
+import ctl from "@netlify/classnames-template-literals";
 import PlusIcon from "./icons/PlusIcon";
 
 type ButtonProp = {
@@ -14,7 +15,7 @@ const TkButton = ({title, onClick}: ButtonProp) => {
     )
 }
 
-const btn = `
+const btn = ctl(`
     bg-[#007FFF1A] 
     px-[15px] 
     py-[12px] 
@@ -25,6 +26,6 @@ const btn = `
     text-secondary 
     font-bold
     w-auto
-`;
+`);
 
 export default TkButton;

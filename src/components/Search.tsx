@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'; 
+import ctl from "@netlify/classnames-template-literals";
 import MagnifyingGlass from "./icons/MagnifyingGlass";
 import CloseIcon from './icons/CloseIcon';
 
@@ -43,11 +44,11 @@ const Search = () => {
     )
 }
 
-const inputWrraper = `
+const inputWrraper = ctl(`
     relative
-`;
+`);
 
-const searchBox = `
+const searchBox = ctl(`
     bg-[#F5F7F9] 
     rounded-[10px]
     text-[16px]
@@ -58,19 +59,19 @@ const searchBox = `
     border-2 
     border-[#F5F7F9]
     focus:border-[#007FFF]
-`;
+`);
 
-const searchIcon = `
+const searchIcon = ctl(`
     absolute
     top-[15px]
     left-[12px]
-`;
+`);
 
-const closeIcon = `
+const closeIcon = ctl(`
     absolute
     top-[15px]
     right-[12px]
     cursor-pointer
-`;
+`);
 
 export default Search;
