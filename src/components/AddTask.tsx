@@ -18,7 +18,7 @@ const AddTask = () => {
     }; 
 
     return (
-        <form>
+        <form className="pb-[20px]">
             <div className={inputWrapper}>
                 <span>
                     <AddIcon color={!isFocused? "#C6CFDC" : "#007FFF"} />
