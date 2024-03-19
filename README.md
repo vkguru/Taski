@@ -2,7 +2,13 @@
 
 ## Run Taski locally
 
-First, run the development server:
+First, install dependencies locally:
+
+```bash
+npm install
+```
+
+Then run the server
 
 ```bash
 npm run dev
