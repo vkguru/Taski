@@ -39,6 +39,7 @@ export default function RootLayout({
         <main className="max-w-[1500px] px-5 mx-auto">
           {children}
         </main>
+        <footer className="w-full fixed bottom-0 bg-gradient-to-t from-white h-[200px]"></footer>
       </body>
     </html>
   );
