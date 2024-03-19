@@ -30,8 +30,8 @@ const AddTask = ({taskTitle, taskDetail}: AddTaskProps) => {
                 "Content-type": "application/json; charset=UTF-8",
             },
             body: JSON.stringify({
-                title: task,
-                body: detail,
+                title: task || taskTitle,
+                body: detail || taskDetail,
                 userId: 1,
             }),
         })

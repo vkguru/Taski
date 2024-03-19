@@ -32,7 +32,7 @@ const ExistingTask = ({task, id, details}: TaskProps) => {
                 type="checkbox" 
                 id={id} 
                 checked={isChecked} 
-                className="mr-[10px] w-[20px] h-[16px] border-4"
+                className="mr-[10px] w-[20px] h-[16px] border-4 bg-gray-100 border-gray-300 rounded"
                 onChange={() => setIsChecked((prev) => !prev)}
             />
             <div className="w-[100%]">
@@ -79,4 +79,5 @@ const title = ctl(`
 const pointer = ctl(`
     cursor-pointer
 `)
+
 export default ExistingTask;

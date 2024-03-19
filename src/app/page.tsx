@@ -1,12 +1,13 @@
 "use client"
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Welcome from "@/components/Welcome";
 import NoTask from "@/components/NoTask";
 import AddTask from "@/components/AddTask";
 import ExistingTask from "@/components/ExistingTask";
 import CompletedTask from "@/components/CompletedTask";
 import ArrowDownGrey from "@/components/icons/ArrowDownGrey";
+import Loading from "@/components/Loading";
 
 type TaskProps = {
   userId: string,
@@ -23,6 +24,7 @@ export default function Home() {
   const [userName, setUserName] = useState("John");
   const [completeTask, setCompleteTask] = useState<Array<TaskProps>>([]);
   const [incompleteTask, setIncompleteTask] = useState<Array<TaskProps>>([]);
+  const [isLoading, setIsLoading] =  useState(false);
 
   const creatTask = () => {
     setHasTask(true);
@@ -32,6 +34,7 @@ export default function Home() {
   const getTask = () => {
     const completed: TaskProps[] = [];
     const notCompleted: TaskProps[] = [];
+    setIsLoading(true);
     fetch(`${process.env.NEXT_PUBLIC_BASE_URL}?userId=1`)
     .then(res => res.json())
     .then(data => {
@@ -39,10 +42,12 @@ export default function Home() {
         if(el.completed === true) {
           completed.push(el);
           setCompleteTask(completed);
+          setIsLoading(false);
         } else {
           notCompleted.push(el);
           setIncompleteTask(notCompleted);
           setWelcomeMessage(`You’ve got ${notCompleted.length} tasks to do.`);
+          setIsLoading(false);
         }
       })
     })
@@ -55,6 +60,7 @@ export default function Home() {
         name={userName} 
         subtext={welcomeMessage} 
       />
+      {isLoading && <Loading />}
       {!hasTask?
         <NoTask 
           message={promptMessage}

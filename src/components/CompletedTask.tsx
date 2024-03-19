@@ -20,7 +20,7 @@ const CompletedTask = ({task, id, details, checked}: TaskProps) => {
                 type="checkbox" 
                 id={id} 
                 checked={checked} 
-                className="mr-[10px] w-[20px] h-[16px] border-4"
+                className="mr-[10px] w-[20px] h-[16px] border-4 bg-gray-50 focus:ring-3 focus:ring-gray-300"
             />
             <div className="w-[100%]">
                 <div className="flex justify-between">
