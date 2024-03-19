@@ -27,7 +27,7 @@ const ExistingTask = ({task, id, details}: TaskProps) => {
     }
 
     return (
-        <div className="bg-[#F5F7F9] rounded-[20px] p-[20px] flex items-baseline">
+        <div className="bg-[#F5F7F9] rounded-[20px] p-[20px] flex items-baseline mb-[20px]">
             <input 
                 type="checkbox" 
                 id={id} 

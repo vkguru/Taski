@@ -23,12 +23,25 @@ const AddTask = ({taskTitle, taskDetail}: AddTaskProps) => {
         setIsFocused(false);
     }; 
 
-    const addTitle = () => {
-        setTask("")
+    const addTask = () => {
+        fetch(`${process.env.NEXT_PUBLIC_BASE_URL}?userId=1`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+            body: JSON.stringify({
+                title: task,
+                body: detail,
+                userId: 1,
+            }),
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => err)
     }
 
     return (
-        <form className="pb-[20px]">
+        <form className="pb-[20px]" action={addTask}>
             <div className={inputWrapper}>
                 <span>
                     <AddIcon color={!isFocused? "#C6CFDC" : "#007FFF"} />
@@ -39,6 +52,11 @@ const AddTask = ({taskTitle, taskDetail}: AddTaskProps) => {
                     onFocus={handleOnFocus}
                     onBlur={handleBlur} 
                     onChange={e => setTask(e.target.value)}
+                    onKeyDown={(e) => {
+                        if(e.key === "Enter") {
+                            addTask()
+                        }
+                    }}
                     className="text-[18px] font-semibold placeholder-[#8D9CB8] w-full"
                 />
             </div>
@@ -52,6 +70,11 @@ const AddTask = ({taskTitle, taskDetail}: AddTaskProps) => {
                         type="text" 
                         placeholder="Add a note..." 
                         onChange={e => setDetail(e.target.value)}
+                        onKeyDown={(e) => {
+                            if(e.key === "Enter") {
+                                addTask()
+                            }
+                        }}
                         className="text-[18px] font-semibold placeholder-[#C6CFDC] w-full"
                     />
                 </div>

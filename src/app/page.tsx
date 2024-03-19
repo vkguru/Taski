@@ -5,6 +5,8 @@ import Welcome from "@/components/Welcome";
 import NoTask from "@/components/NoTask";
 import AddTask from "@/components/AddTask";
 import ExistingTask from "@/components/ExistingTask";
+import CompletedTask from "@/components/CompletedTask";
+import ArrowDownGrey from "@/components/icons/ArrowDownGrey";
 
 type TaskProps = {
   userId: string,
@@ -19,24 +21,30 @@ export default function Home() {
   const [promptMessage, setPromptMessage] = useState("You have no task listed");
   const [welcomeMessage, setWelcomeMessage] = useState("Create tasks to achieve more.");
   const [userName, setUserName] = useState("John");
-  const [taskList, setTaskList] = useState<Array<TaskProps>>([]);
+  const [completeTask, setCompleteTask] = useState<Array<TaskProps>>([]);
+  const [incompleteTask, setIncompleteTask] = useState<Array<TaskProps>>([]);
 
   const creatTask = () => {
     setHasTask(true);
     getTask();
   }
 
-  // useEffect(() => {
-  //   getTask()
-  // })
-
   const getTask = () => {
+    const completed: TaskProps[] = [];
+    const notCompleted: TaskProps[] = [];
     fetch(`${process.env.NEXT_PUBLIC_BASE_URL}?userId=1`)
     .then(res => res.json())
     .then(data => {
-      console.log(taskList);
-      setTaskList(data);
-      console.log(taskList)
+      data.forEach((el: TaskProps) => {
+        if(el.completed === true) {
+          completed.push(el);
+          setCompleteTask(completed);
+        } else {
+          notCompleted.push(el);
+          setIncompleteTask(notCompleted);
+          setWelcomeMessage(`You’ve got ${notCompleted.length} tasks to do.`);
+        }
+      })
     })
     .catch(err => err)
   }
@@ -56,13 +64,31 @@ export default function Home() {
         :
         <section className="pt-[30px]">
             <AddTask />
-            {taskList.map((task) => 
+            {incompleteTask.map((task) => 
               <ExistingTask 
                 key={task.id}
                 task={task.title}
-                details="By the time a prospect arrives at your signup page, in most cases, they've already By the time a prospect arrives at your signup page, in most cases." 
+                details={task.title} //The response data does not contail details of the task 
                 id={task.id}
               />
+            )}
+
+            <div className="flex justify-between m-[15px]">
+              <span className="flex items-center gap-[6px]">
+                <h3 className="text-[#8D9CB8] font-semibold">Completed</h3>
+                <ArrowDownGrey />
+              </span>
+
+              <button className="text-[#FF5E5E] font-semibold bg-[#FF8C8C26] py-[3px] px-[5px]">Delete All</button>
+            </div>
+
+            {completeTask.map(task => 
+              <CompletedTask 
+                key={task.id}
+                task={task.title}
+                id={task.id}
+                checked={task.completed}
+              />  
             )}
         </section>
       }
