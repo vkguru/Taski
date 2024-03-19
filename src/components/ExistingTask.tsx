@@ -10,11 +10,11 @@ import DownArrow from "./icons/DownArrow";
 type TaskProps = {
     task: string,
     id?: string,
-    details: string,
-    editItem?: React.MouseEventHandler<HTMLSpanElement>
+    details?: string,
+    // editItem?: React.MouseEventHandler<HTMLSpanElement>
 }
 
-const ExistingTask = ({task, id, details, editItem}: TaskProps) => {
+const ExistingTask = ({task, id, details}: TaskProps) => {
     const [isChecked, setIsChecked] = useState(false);
     const [revealDetails, setReavelDetails] = useState(false);
 
@@ -51,7 +51,7 @@ const ExistingTask = ({task, id, details, editItem}: TaskProps) => {
                             <span className={pointer} onClick={hideDetails}>
                                 <ArrowIcon />
                             </span>
-                            <span className={pointer} onClick={editItem}>
+                            <span className={pointer}>
                                 <EditIcon />
                             </span>
                             <span className={pointer}>

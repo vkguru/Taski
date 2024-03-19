@@ -5,9 +5,15 @@ import ctl from "@netlify/classnames-template-literals";
 import AddIcon from "./icons/AddIcon";
 import PenIcon from "./icons/PenIcon";
 
-const AddTask = () => {
+type AddTaskProps = {
+    taskTitle?: string,
+    taskDetail?: string
+}
+
+const AddTask = ({taskTitle, taskDetail}: AddTaskProps) => {
     const [isFocused, setIsFocused] = useState(false);
     const [task, setTask] = useState("");
+    const [detail, setDetail] = useState("");
 
     const handleOnFocus = () => {
         setIsFocused(true);
@@ -16,6 +22,10 @@ const AddTask = () => {
     const handleBlur = () => { 
         setIsFocused(false);
     }; 
+
+    const addTitle = () => {
+        setTask("")
+    }
 
     return (
         <form className="pb-[20px]">
@@ -29,7 +39,7 @@ const AddTask = () => {
                     onFocus={handleOnFocus}
                     onBlur={handleBlur} 
                     onChange={e => setTask(e.target.value)}
-                    className="text-[18px] font-semibold placeholder-[#8D9CB8]"
+                    className="text-[18px] font-semibold placeholder-[#8D9CB8] w-full"
                 />
             </div>
 
@@ -41,7 +51,8 @@ const AddTask = () => {
                     <input 
                         type="text" 
                         placeholder="Add a note..." 
-                        className="text-[18px] font-semibold placeholder-[#C6CFDC]"
+                        onChange={e => setDetail(e.target.value)}
+                        className="text-[18px] font-semibold placeholder-[#C6CFDC] w-full"
                     />
                 </div>
             }
